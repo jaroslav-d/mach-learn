@@ -13,7 +13,7 @@ data.Age = data.Age.median()
 # print(data[data.Embarked.isnull()])
 MaxPassEmbarked = data.groupby('Embarked').count()['PassengerId']
 print(data.Embarked[data.Embarked.isnull()])
-data.loc[data.Embarked.isnull(),("Embarked")] = MaxPassEmbarked[MaxPassEmbarked == MaxPassEmbarked.max()].index[0]
+data.loc[data.Embarked.isnull(),('Embarked')] = MaxPassEmbarked[MaxPassEmbarked == MaxPassEmbarked.max()].index[0]
 data.PassengerId[data.Fare.isnull()]
 data = data.drop(['PassengerId','Name','Ticket','Cabin'],axis=1)
 
@@ -35,7 +35,7 @@ test = read_csv('test.csv')
 test.loc[test.Age.isnull(),('Age')] = test.Age.mean()
 test.loc[test.Fare.isnull(),('Fare')] = test.Fare.median()
 MaxPassEmbarked = test.groupby('Embarked').count()['PassengerId']
-test.loc[data.Embarked.isnull(),("Embarked")]  = MaxPassEmbarked[MaxPassEmbarked == MaxPassEmbarked.max()].index[0]
+test.loc[data.Embarked.isnull(),('Embarked')]  = MaxPassEmbarked[MaxPassEmbarked == MaxPassEmbarked.max()].index[0]
 result = DataFrame(test.PassengerId)
 test = test.drop(['Name','Ticket','Cabin','PassengerId'],axis=1)
 
@@ -110,4 +110,4 @@ pl.show()
 ##
 model_rfc.fit(train, target)
 result.insert(1,'Survived', model_rfc.predict(test))
-result.to_csv('test.csv', index=False)
+result.to_csv('test_result.csv', index=False)
